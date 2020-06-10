@@ -6,6 +6,12 @@ __pycache__/
 # Secret keys
 Jinsight/SECRET_KEY.py
 
+# Pycharm
+.idea
+*.iml
+out
+gen
+
 # C extensions
 *.so
 
