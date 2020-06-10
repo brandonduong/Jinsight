@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Secret keys
+Jinsight/SECRET_KEY.py
+
 # C extensions
 *.so
 
