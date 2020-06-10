@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from Jinsight.SECRET_KEY import get_secret_key
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '_4htkh485hu_ifaj4848z+ga06=w@gtx$xqk7tlcby+0nx@@s_'
+SECRET_KEY = get_secret_key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
