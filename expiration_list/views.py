@@ -5,3 +5,4 @@ from django.shortcuts import render
 def index(request):
     context = {}
     return render(request, 'expiration_list/index.html', context)
+

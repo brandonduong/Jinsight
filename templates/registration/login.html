@@ -1,10 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "expiration_list/base.html" %}
 
-</body>
-</html>
+{% block content %}
+    <header>
+        <h1>Login</h1>
+
+        <form method="POST" class="form-group">
+            {% csrf_token %}
+            {% for field in form %}
+                <p>
+                    <br>
+
+                    {{ field.label_tag }}
+                    {{ field }}
+
+                    {% if field.help_text %}
+                    <small style="color: grey">{{ field.help_text }}</small>
+                    {% endif %}
+                </p>
+            {% endfor %}
+
+            {% if form.errors %}
+                <p style="color: red">Your username or password was invalid. Please try again.</p>
+            {% endif %}
+
+            <br>
+            <p>Don't have an account? Create one <a href="/register">here</a></p>
+            <br>
+
+            <button type="submit" class="btn btn-success">Login</button>
+        </form>
+    </header>
+{% endblock %}
