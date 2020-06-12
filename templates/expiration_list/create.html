@@ -1,0 +1,17 @@
+{% extends 'expiration_list/base.html' %}
+ 
+{% block content %}
+	<h3>Expiration List</h3>
+	<br>
+	<form method="post" action="/create/" class="form-group">
+		{% csrf_token %}
+        {{ form.name.label_tag }}
+        {{form.name}}
+        <br>
+		<div class="input-group mb-3">
+	  		<div class="input-group-prepend">
+	  		<button type="submit" class="btn btn-success">Save</button>
+	  		</div>
+		</div>
+	</form>
+{% endblock %}
