@@ -1,0 +1,34 @@
+{% extends 'expiration_list/base.html' %}
+
+{% block content %}
+	<h1>{{ls.name}}</h1>
+    <form method="post" action="#">
+    {% csrf_token %}
+        <ul>
+            <table style="width:100%">
+                <tr>
+                    <th>Item Name</th>
+                    <th>Condition</th>
+                    <th>Date Bought</th>
+                </tr>
+                {% for item in ls.item_set.all %}
+                    <tr>
+                        <td>{{ item.text }}</td>
+                        {% if item.good %}
+                            <td>Good</td>
+                        {% else %}
+                            <td>Bad</td>
+                        {% endif %}
+                        <td>{{ item.date_bought }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+        </ul>
+        <br>
+        <h2>New Item</h2>
+        <input type="text", name="new">
+        <br>
+        <button type="submit", name="newItem", value="newItem">Add Item</button>
+    </form>
+{% endblock %}
