@@ -10,6 +10,7 @@
                     <th>Item Name</th>
                     <th>Condition</th>
                     <th>Date Bought</th>
+                    <th></th>
                 </tr>
                 {% for item in ls.item_set.all %}
                     <tr>
@@ -20,6 +21,7 @@
                             <td>Bad</td>
                         {% endif %}
                         <td>{{ item.date_bought }}</td>
+                        <td><button onclick="location.href='/{{ ls.id }}/{{ item.id }}/'" type="button">Delete Item</button></td>
                     </tr>
                 {% endfor %}
             </table>
@@ -27,8 +29,8 @@
         </ul>
         <br>
         <h2>New Item</h2>
-        <input type="text", name="new">
+        <input type="text" name="new">
         <br>
-        <button type="submit", name="newItem", value="newItem">Add Item</button>
+        <button type="submit" name="newItem" value="newItem">Add Item</button>
     </form>
 {% endblock %}

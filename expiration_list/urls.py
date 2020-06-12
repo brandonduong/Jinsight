@@ -9,5 +9,7 @@ urlpatterns = [
     path("create/", views.create, name="index"),
     # ex: /1/
     path("<int:id>", views.lists, name="lists"),
+    # ex: /1/4/
+    path("<int:id>/<int:itemId>/", views.delete, name="delete"),
 
 ]

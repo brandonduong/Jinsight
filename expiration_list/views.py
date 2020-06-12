@@ -36,5 +36,13 @@ def lists(request, id):
             else:
                 print("invalid")
 
+            return redirect("/" + str(id))
+
     context = {"ls": ls}
     return render(request, "expiration_list/lists.html", context)
+
+
+def delete(request, id, itemId):
+    ls = ExpirationList.objects.get(id=id)
+    ls.item_set.get(id=itemId).delete()
+    return redirect("/" + str(id))
