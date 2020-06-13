@@ -17,6 +17,7 @@ class Item(models.Model):
     good = models.CharField(max_length=50)
     date_bought = models.DateTimeField(default=timezone.now)
     date_expired = models.DateTimeField(default=timezone.now)
+    days_left = models.CharField(max_length=50)
 
     def __str__(self):
         return self.text

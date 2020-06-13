@@ -33,7 +33,9 @@ def lists(request, id):
 
             if len(txt) > 0 and request.POST.get("date"):
                 date = request.POST.get("date")
-                ls.item_set.create(text=txt, good=True, date_bought=str(timezone.now()), date_expired=date)
+
+                ls.item_set.create(text=txt, good=True, date_bought=str(timezone.now()),
+                                   date_expired=date, days_left=0)
             else:
                 print("invalid")
 
@@ -43,7 +45,22 @@ def lists(request, id):
     for i in ls.item_set.all():
         if timezone.now() >= i.date_expired:
             i.good = False
-            i.save()
+
+        # Calculate how many days left before expired
+        delta = i.date_expired - timezone.now()
+        hours = (delta.total_seconds() - (delta.days * 24 * 60 * 60)) / 3600
+
+        if delta.days > 0:
+            i.days_left = ("%d day(s) and %d hours" % (delta.days, hours))
+
+        elif delta.total_seconds() > 0:
+            i.days_left = ("%d hours" % hours)
+
+        else:
+            i.days_left = "Expired"
+
+        # Save item changes
+        i.save()
 
     context = {"ls": ls}
     return render(request, "expiration_list/lists.html", context)
