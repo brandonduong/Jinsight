@@ -39,6 +39,12 @@ def lists(request, id):
 
             return redirect("/" + str(id) + "#list_view")
 
+    # Update the condition of all items in current list
+    for i in ls.item_set.all():
+        if timezone.now() >= i.date_expired:
+            i.good = False
+            i.save()
+
     context = {"ls": ls}
     return render(request, "expiration_list/lists.html", context)
 

@@ -15,7 +15,7 @@
                 {% for item in ls.item_set.all %}
                     <tr>
                         <td>{{ item.text }}</td>
-                        {% if item.good %}
+                        {% if item.good == "True" %}
                             <td>Good</td>
                         {% else %}
                             <td>Bad</td>
