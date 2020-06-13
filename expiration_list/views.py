@@ -31,8 +31,9 @@ def lists(request, id):
         if request.POST.get("newItem"):
             txt = request.POST.get("new")
 
-            if len(txt) > 0:
-                ls.item_set.create(text=txt, good=True, date_bought=str(timezone.now()))
+            if len(txt) > 0 and request.POST.get("date"):
+                date = request.POST.get("date")
+                ls.item_set.create(text=txt, good=True, date_bought=str(timezone.now()), date_expired=date)
             else:
                 print("invalid")
 
