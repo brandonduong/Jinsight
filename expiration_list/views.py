@@ -34,7 +34,7 @@ def lists(request, id):
             if len(txt) > 0 and request.POST.get("date"):
                 date = request.POST.get("date")
 
-                ls.item_set.create(text=txt, good=True, date_bought=str(timezone.now()),
+                ls.item_set.create(text=txt, good=True, date_bought=str(timezone.now().date()),
                                    date_expired=date, days_left=0)
             else:
                 print("invalid")
@@ -57,7 +57,7 @@ def lists(request, id):
             i.days_left = ("%d hours" % hours)
 
         else:
-            i.days_left = "Expired"
+            i.days_left = "----------"
 
         # Save item changes
         i.save()

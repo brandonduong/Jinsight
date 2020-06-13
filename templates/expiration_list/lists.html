@@ -10,19 +10,21 @@
                     <th>Item Name</th>
                     <th>Condition</th>
                     <th>Date Bought</th>
+                    <th>Date Expired</th>
                     <th>Days Left</th>
                     <th></th>
                 </tr>
                 {% for item in ls.item_set.all %}
                     <tr>
-                        <td>{{ item.text }}</td>
+                        <td><b style="color: #333333">{{ item.text }}</b></td>
                         {% if item.good == "True" %}
-                            <td>Good</td>
+                            <td><b style="color: green">Good</b></td>
                         {% else %}
-                            <td>Bad</td>
+                            <td><b style="color: darkred">Expired</b></td>
                         {% endif %}
-                        <td>{{ item.date_bought }}</td>
-                        <td>{{ item.days_left }}</td>
+                        <td><b>{{ item.date_bought|date:'F d, Y' }}</b></td>
+                        <td><b>{{ item.date_expired|date:'F d, Y' }}</b></td>
+                        <td><b>{{ item.days_left }}</b></td>
                         <td><button onclick="location.href='/{{ ls.id }}/{{ item.id }}/'" type="button">Delete Item</button></td>
                     </tr>
                 {% endfor %}
