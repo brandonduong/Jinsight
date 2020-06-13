@@ -1,7 +1,7 @@
 {% extends 'expiration_list/base.html' %}
 
 {% block content %}
-	<h1>{{ls.name}}</h1>
+	<h1 id="list_view">{{ls.name}}</h1>
     <form method="post" action="#">
     {% csrf_token %}
         <ul>
