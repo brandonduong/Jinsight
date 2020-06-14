@@ -7,8 +7,11 @@
             By keeping track of all groceries and refrigerated cooked food, you will no longer <br>
             have to worry about opening your fridge to expired cucumbers, or rock-hard, dry rice.
         </p>
+        {% if user.is_authenticated %}
+            <h1>Your Lists:</h1>
+        {% endif %}
         {% for list in user.expirationlist.all %}
-            <p><a href="/{{ list.id }}">{{ list.name }}</a></p>
+            <p><b><a href="/{{ list.id }}">{{ list.name }}</a></b></p>
         {% endfor %}
     </header>
 {% endblock %}
