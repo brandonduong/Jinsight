@@ -8,7 +8,7 @@
             have to worry about opening your fridge to expired cucumbers, or rock-hard, dry rice.
         </p>
         {% if not user.is_authenticated %}
-            <p>Create an account <a href="/register">here</a> to get started!</p>
+            <p>Create an account <a href="/register">here</a> to get started! Or, if you already have one, login <a href="/login">here</a>!</p>
         {% endif %}
         {% if user.is_authenticated %}
             <h1>Your Lists:</h1>
