@@ -7,6 +7,9 @@
             By keeping track of all groceries and refrigerated cooked food, you will no longer <br>
             have to worry about opening your fridge to expired cucumbers, or rock-hard, dry rice.
         </p>
+        {% if not user.is_authenticated %}
+            <p>Create an account <a href="/register">here</a> to get started!</p>
+        {% endif %}
         {% if user.is_authenticated %}
             <h1>Your Lists:</h1>
         {% endif %}
