@@ -28,7 +28,7 @@ def create(request):
 
 def lists(request, id):
     ls = ExpirationList.objects.get(id=id)
-    if ls not in request.user.expirationlist.all():
+    if not request.user.is_authenticated or ls not in request.user.expirationlist.all():
         return redirect("/")
 
     if request.method == "POST":
