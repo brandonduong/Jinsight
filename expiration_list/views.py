@@ -13,11 +13,12 @@ def index(request):
 def create(request):
     if request.method == "POST":
         form = CreateNewList(request.POST)
-        print(form.errors)
+
         if form.is_valid():
             n = form.cleaned_data["name"]
             t = ExpirationList(name=n)
             t.save()
+            request.user.expirationlist.add(t)
             return redirect("/")
     else:
         form = CreateNewList()
@@ -27,6 +28,9 @@ def create(request):
 
 def lists(request, id):
     ls = ExpirationList.objects.get(id=id)
+    if ls not in request.user.expirationlist.all():
+        return redirect("/")
+
     if request.method == "POST":
         if request.POST.get("newItem"):
             txt = request.POST.get("new")
